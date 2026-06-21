@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 资料索引与场景导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f3f5f8;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1e2a3a;
+            line-height: 1.65;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wrapper {
+            max-width: 1080px;
+            width: 100%;
+        }
+
+        /* 导航 */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.9rem 1.6rem;
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border-radius: 48px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e4e9f0;
+            margin-bottom: 2.8rem;
+        }
+
+        .logo-area {
+            font-weight: 550;
+            font-size: 1.4rem;
+            letter-spacing: 0.3px;
+            color: #2b3b4e;
+        }
+
+        .logo-area span {
+            background: #d9e2ef;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: 6px;
+            color: #2a4f6e;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.6rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2f4055;
+            font-size: 0.95rem;
+            font-weight: 450;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 1px solid transparent;
+            transition: border 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #6b8baa;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem 2.2rem;
+            border: 1px solid #e3e8f0;
+            box-shadow: 0 6px 16px -6px rgba(0, 20, 40, 0.06);
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 24px -8px rgba(26, 45, 70, 0.08);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            margin-bottom: 1rem;
+            color: #1f2d3f;
+            border-left: 4px solid #7b9bb9;
+            padding-left: 1rem;
+        }
+
+        .card-sub {
+            color: #4a5c72;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* hero 区 */
+        .hero {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 3rem 2.8rem;
+            border: 1px solid #e2e9f2;
+            box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 2.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            font-weight: 540;
+            letter-spacing: -0.5px;
+            color: #16212e;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-text p {
+            max-width: 520px;
+            color: #3d5066;
+            font-size: 1.05rem;
+        }
+
+        .hero-highlight {
+            background: #eef3f9;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            color: #1f3c54;
+            border: 1px solid #d6e0ec;
+            white-space: nowrap;
+        }
+
+        /* 三列场景模块 */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .scene-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem 2rem;
+            border: 1px solid #e2e7f0;
+            box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.02);
+        }
+
+        .scene-card h3 {
+            font-weight: 500;
+            font-size: 1.25rem;
+            margin-bottom: 0.9rem;
+            color: #1b2b3d;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #3c4f64;
+            margin-bottom: 0.5rem;
+        }
+
+        .scene-tag {
+            display: inline-block;
+            background: #e9eff7;
+            border-radius: 40px;
+            padding: 0.2rem 0.9rem;
+            font-size: 0.8rem;
+            color: #265073;
+            margin-top: 0.5rem;
+            border: 1px solid #d3deec;
+        }
+
+        /* 常见说明 · 紧凑FAQ */
+        .faq-item {
+            border-bottom: 1px solid #e6ecf4;
+            padding: 1.1rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #1b2f44;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            color: #4b6078;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+
+        .faq-a a {
+            color: #2b5f83;
+            text-decoration: none;
+            border-bottom: 1px dotted #8aa9c7;
+        }
+
+        .faq-a a:hover {
+            border-bottom-color: #1e4b6b;
+        }
+
+        /* 介绍段落 */
+        .intro-extra {
+            background: #ffffffd8;
+            border-radius: 28px;
+            padding: 2rem 2.4rem;
+            border: 1px solid #e4eaf2;
+            margin-bottom: 1.8rem;
+        }
+
+        .intro-extra p {
+            margin-bottom: 0.8rem;
+        }
+
+        /* 链接 */
+        .inline-link {
+            color: #2d5d81;
+            text-decoration: none;
+            border-bottom: 1px solid #b3c8de;
+            font-weight: 450;
+            transition: border 0.2s;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #17405b;
+        }
+
+        /* 底部 */
+        .footer-note {
+            text-align: center;
+            padding: 1.6rem 0 0.8rem;
+            font-size: 0.85rem;
+            color: #62778f;
+            border-top: 1px solid #dce3ee;
+            margin-top: 1rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 760px) {
+            body {
+                padding: 1.2rem 0.9rem;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 2rem 1.6rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-highlight {
+                margin-top: 1rem;
+                white-space: normal;
+                align-self: flex-start;
+            }
+
+            .scenes-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.6rem;
+                padding: 0.8rem 1.2rem;
+                border-radius: 28px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1.6rem 1.4rem;
+            }
+
+            .intro-extra {
+                padding: 1.6rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- 顶部导航 -->
+    <nav>
+        <div class="logo-area">
+            📋 索引库 <span>资料整理</span>
+        </div>
+        <div class="nav-links">
+            <a href="#intro">介绍</a>
+            <a href="#scenes">场景</a>
+            <a href="#faq">说明</a>
+        </div>
+    </nav>
+
+    <!-- Hero 区 -->
+    <div class="hero">
+        <div class="hero-text">
+            <h1>围绕游戏的信息梳理</h1>
+            <p>从日常查找、资源归类到轻量化查阅，这里提供一种结构化的内容导航方式。基于公开资料与用户常见路径整理。</p>
+        </div>
+        <div class="hero-highlight">
+            ⚡ 索引即服务
+        </div>
+    </div>
+
+    <!-- 介绍卡片: 从资料整理和信息索引的角度 -->
+    <div class="intro-extra" id="intro">
+        <p>
+            在日常接触游戏内容的过程中，无论是查找版本更新、了解玩法背景，还是收集玩家社区讨论，信息往往散落在不同地方。
+            我们尝试从资料整理与信息索引的角度，将常见需求进行归类，并持续维护一个精简的导航结构。
+            如果你正在寻找某个方向的内容起点，可以留意 <a href="https://m-app-aiyouxi.com.cn" class="inline-link">爱游戏</a> 所聚合的信息脉络。
+            它并非一个大而全的门户，更像是一张不断修订的清单，帮助你定位自己感兴趣的区域。
+        </p>
+        <p style="margin-bottom: 0;">
+            目前索引覆盖了基础资讯、社区讨论和实用工具三类线索，下面三个场景卡片展示了部分典型切入方向。
+        </p>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="card-title" id="scenes" style="border-left: none; padding-left: 0; margin-bottom: 0.6rem;">📌 典型场景</div>
+    <div class="scenes-grid">
+        <div class="scene-card">
+            <h3>📰 资讯与动态</h3>
+            <p>游戏版本更新、活动预告、开发者笔记、媒体评测摘要…… 通过分类索引可以快速定位某款游戏近期的公开动态，减少在多平台间盲目搜索的时间。</p>
+            <span class="scene-tag">版本追踪</span>
+            <span class="scene-tag">活动日历</span>
+        </div>
+        <div class="scene-card">
+            <h3>💬 社区与讨论</h3>
+            <p>玩家社群中沉淀了大量实用内容：攻略思路、配置推荐、剧情解析。基于话题标签整理后，你可以按游戏名或机制筛选，找到高质量的讨论串或整理帖。</p>
+            <span class="scene-tag">话题聚类</span>
+            <span class="scene-tag">攻略索引</span>
+        </div>
+        <div class="scene-card">
+            <h3>🧰 工具与参考</h3>
+            <p>模拟器、帧率测试、地图浏览器、配装计算器…… 许多第三方工具能极大提升体验。我们收集了经过社区验证的链接与说明，方便按需取用。</p>
+            <span class="scene-tag">实用资源</span>
+            <span class="scene-tag">工具清单</span>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="card" id="faq">
+        <div class="card-title">📖 常见说明</div>
+
+        <div class="faq-item">
+            <div class="faq-q">这个索引库的更新频率如何？</div>
+            <div class="faq-a">内容通常跟随游戏版本与社区活跃度定期刷新，并非实时同步。重大更新或新游上线后会尽快补充相关条目。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">我可以从这里直接开始查找某款游戏吗？</div>
+            <div class="faq-a">可以。你可以通过 <a href="https://m-app-aiyouxi.com.cn">爱游戏</a> 提供的分类入口进入对应板块，或使用站内搜索（如果可用）缩小范围。目前索引以中文内容为主。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">信息源的可靠性如何判断？</div>
+            <div class="faq-a">每个条目会标注来源类型（如官方公告、社区精华、工具官网），部分内容附有简要备注。建议对关键信息二次核实。</div>
+        </div>
+        <div class="faq-item" style="border-bottom: none;">
+            <div class="faq-q">是否有计划扩展索引的覆盖范围？</div>
+            <div class="faq-a">会根据用户反馈与内容生态自然延伸，优先补充那些查找成本较高、但实际需求集中的领域。欢迎通过页面反馈渠道提出建议。</div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        资料索引 · 内容持续修订中 &nbsp;|&nbsp; 基于公开信息整理
+    </div>
+</div>
+</body>
+</html>
