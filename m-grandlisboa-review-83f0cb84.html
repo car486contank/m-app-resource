@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>澳门新葡京 · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f6f0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+            color: #2c2b28;
+            line-height: 1.6;
+            padding: 0 1.5rem 3rem;
+        }
+
+        .page-wrap {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        /* 顶部导航 — 极简分割线风格 */
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 2.2rem;
+            padding: 1.8rem 0 1.4rem;
+            border-bottom: 1px solid #d8d3c8;
+            flex-wrap: wrap;
+        }
+
+        nav .brand {
+            margin-right: auto;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            font-size: 1.25rem;
+            color: #8b7d6b;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #3f3b35;
+            font-size: 0.95rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        nav a:hover {
+            border-bottom: 1px solid #9b8c78;
+            color: #1f1e1b;
+        }
+
+        /* Hero 区域 — 简洁标题 + 引用框 */
+        .hero {
+            margin: 3rem 0 2.8rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 350;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #1f1d19;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #5a544b;
+            max-width: 70ch;
+        }
+
+        .notice-block {
+            background: #efebe4;
+            border-left: 5px solid #b7a993;
+            padding: 1.4rem 1.8rem;
+            margin: 2.2rem 0 2rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.97rem;
+            color: #3d3933;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .notice-block strong {
+            font-weight: 550;
+            color: #2b2721;
+        }
+
+        /* 介绍段 */
+        .intro-text {
+            font-size: 1.04rem;
+            margin-bottom: 2.5rem;
+            columns: 1;
+            column-gap: 2rem;
+        }
+
+        @media (min-width: 680px) {
+            .intro-text {
+                columns: 2;
+            }
+        }
+
+        .intro-text p {
+            break-inside: avoid;
+            margin-bottom: 1.2rem;
+        }
+
+        .intro-text a {
+            color: #6d5f4c;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            transition: color 0.2s;
+        }
+
+        .intro-text a:hover {
+            color: #3d3226;
+        }
+
+        /* 三个场景模块 — 卡片式 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+            margin: 2.2rem 0 2.8rem;
+        }
+
+        @media (min-width: 600px) {
+            .scene-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .scene-card {
+            background: white;
+            border: 1px solid #e3ddd2;
+            padding: 1.6rem 1.2rem 1.4rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .scene-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .scene-card h3 {
+            font-size: 1.05rem;
+            font-weight: 520;
+            letter-spacing: 0.01em;
+            margin-bottom: 0.6rem;
+            color: #3b352e;
+            border-bottom: 1px dashed #d5cfc3;
+            padding-bottom: 0.4rem;
+        }
+
+        .scene-card p {
+            font-size: 0.92rem;
+            color: #4d4840;
+            margin-bottom: 0.4rem;
+        }
+
+        .scene-card .scene-note {
+            font-size: 0.85rem;
+            color: #756e64;
+            margin-top: 0.55rem;
+            padding-top: 0.4rem;
+            border-top: 1px solid #ede8de;
+        }
+
+        /* 常见说明 (FAQ 摘要) */
+        .faq-summary {
+            margin: 2.8rem 0 2rem;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.5rem;
+            font-weight: 380;
+            margin-bottom: 1.6rem;
+            letter-spacing: -0.01em;
+            color: #2d2a25;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ded9ce;
+            padding: 0.8rem 0;
+        }
+
+        .faq-item:first-of-type {
+            border-top: 1px solid #ded9ce;
+        }
+
+        .faq-q {
+            font-weight: 510;
+            color: #3f3a32;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-a {
+            font-size: 0.92rem;
+            color: #5b554c;
+            padding-left: 0.2rem;
+        }
+
+        .faq-a a {
+            color: #6d5f4c;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .faq-a a:hover {
+            color: #3d3226;
+        }
+
+        /* 底部 */
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid #ddd8cc;
+            font-size: 0.85rem;
+            color: #7b756b;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.6rem;
+        }
+
+        footer span {
+            opacity: 0.7;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            nav .brand {
+                font-size: 1rem;
+            }
+            .notice-block {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 导航 -->
+    <nav>
+        <div class="brand">简明指南</div>
+        <a href="#intro">介绍</a>
+        <a href="#scenes">场景</a>
+        <a href="#faq">说明</a>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>澳门新葡京 · 访问简录</h1>
+        <p>基于实地经验整理的轻量导航，涵盖位置、交通与常见注意事项。</p>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="notice-block">
+        <strong>行前提醒：</strong> 请携带有效身份证件，入场需配合安检与年龄核验。
+        建议提前了解当地防疫及场所最新运营安排，合理规划时段。
+    </div>
+
+    <!-- 核心介绍 (两栏) -->
+    <div class="intro-text" id="intro">
+        <p>
+            <a href="https://m-grandlisboa.com">澳门新葡京</a> 位于澳门半岛核心地段，毗邻葡京酒店与南湾湖，
+            是区域内辨识度极高的地标建筑之一。建筑外观采用莲花与羽毛造型，内部集合酒店、餐饮及休闲设施。
+            对于初次到访的旅客，建议从正门进入后先在一层大堂获取楼层导览图。
+        </p>
+        <p>
+            周边交通便利：公交站点「葡京酒店」步行约3分钟，的士落客区设于主入口东侧。
+            自驾或搭乘酒店穿梭巴士的访客，可留意地下停车场入口标识（限高2.1米）。
+            内部动线分为东西两翼，主要公共设施集中于二至四层。
+        </p>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scene-grid" id="scenes">
+        <div class="scene-card">
+            <h3>▎出行准备</h3>
+            <p>提前确认证件、货币及通讯方案。澳门使用澳门元，多数商户接受港币及信用卡。</p>
+            <p>建议下载离线地图，部分室内区域信号偏弱。</p>
+            <div class="scene-note">可在大堂服务台索取纸质指引手册。</div>
+        </div>
+        <div class="scene-card">
+            <h3>▎设施速览</h3>
+            <p>主楼设有多个餐饮选择，包括中式茶楼、西式自助及轻食吧。楼层分布：G层接待与商店，1-2层餐饮与休息区，3层以上为酒店客房。</p>
+            <div class="scene-note">部分区域仅限住客进入，请留意楼层标识。</div>
+        </div>
+        <div class="scene-card">
+            <h3>▎周边延伸</h3>
+            <p>步行可达议事亭前地、大三巴牌坊及新马路商业区。南湾湖附近有步道适合傍晚散步。</p>
+            <p>若需前往凼仔，可在门口巴士站乘MT4或26路。</p>
+            <div class="scene-note">高峰时段出租车等候时间约10–15分钟。</div>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="faq-summary" id="faq">
+        <h2>常见说明</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">▪ 是否需要提前预约？</div>
+            <div class="faq-a">一般公共区域无需预约，部分餐厅及周末时段建议提前致电确认。关于酒店住宿或团体接待，可通过 <a href="https://m-grandlisboa.com">澳门新葡京</a> 官方渠道获取最新联系方式与预订入口。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">▪ 着装与行为规范</div>
+            <div class="faq-a">建议穿着整洁得体，避免拖鞋或过度休闲装束。场馆内禁止吸烟（指定吸烟区除外），请遵从现场工作人员指引。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">▪ 摄影及携带物品</div>
+            <div class="faq-a">部分区域限制使用闪光灯及三脚架。大件行李需寄存，安检时请主动出示随身物品。具体要求以入口公告为准。</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <span>信息仅供参考，请以现场实际安排为准。</span>
+        <span>更新于 2025</span>
+    </footer>
+</div>
+</body>
+</html>
